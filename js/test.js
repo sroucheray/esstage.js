@@ -41,9 +41,13 @@ setInterval(function(){
         rotation = rotation +  Math.PI / 180;
 
         rect.resetTransforms();
-        rect.rotateAroundCenter(rotation);
+        //rect.rotateAroundCenter(rotation);
         scale += 0.1;
-        rect.scale(Math.sin(scale), Math.sin(scale))
+        //rect.scale(Math.sin(scale), Math.sin(scale))
+        //rect.center(0, 0)
+        //rect.skew(0, 1)
+        //rect.scale(0.2, 1.5)
+        rect.skew(1, 0)
         centerX++;
         clip.x = centerX;
 }, 50)

@@ -124,6 +124,14 @@ class Draw extends PubSub {
         return this;
     }
 
+    skew(x = 0, y = 0){
+        const centerX = this.stageX + this.centerX;
+        const centerY = this.stageY + this.centerY;
+        this.transform("translate", [centerX, centerY]);
+        this.transform("skew", [x, y]);
+        this.transform("translate", [-centerX, -centerY]);
+    }
+
     applyTransforms(stage){
         for (let {prop, value} of this.transforms) {
             value = Array.isArray(value) ? value : [value];
@@ -133,6 +141,8 @@ class Draw extends PubSub {
                 stage.ctx.translate.apply(stage.ctx, value);
             } else if(prop === "scale"){
                 stage.ctx.scale.apply(stage.ctx, value);
+            } else if(prop === "skew"){
+                stage.ctx.transform.apply(stage.ctx, [1, ...value, 1, 0, 0]);
             }
         }
     }
