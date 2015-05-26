@@ -1,0 +1,18 @@
+{
+  "name": "typo-canvas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "babel": "^5.4.3",
+    "es6-module-loader": "^0.16.6",
+    "lodash-es": "^3.9.0",
+    "traceur": "0.0.89"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
