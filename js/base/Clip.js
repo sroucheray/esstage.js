@@ -25,7 +25,8 @@ class Clip extends Draw {
     addChild(child){
         this.children.push(child);
         child.parent = this;
-        this.trigger("child:added", child);
+        this.trigger("child_added", child);
+        child.trigger("update", child);
         child.on("update", this.bubbleEvent("update", child));
     }
 

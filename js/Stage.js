@@ -32,8 +32,9 @@ class Stage extends Clip{
     }
 
     requestAnimationFrame(){
+        window.cancelAnimationFrame(this._paintRequest);
         return new Promise((resolve) => {
-            window.requestAnimationFrame(() => {
+            this._paintRequest = window.requestAnimationFrame(() => {
                 this.paint();
                 resolve();
             });
@@ -54,10 +55,11 @@ class Stage extends Clip{
     }
 
     addChild(child){
-        super.addChild(child);
-        child.on("update", this.requestAnimationFrame.bind(this));
+        child.on("update", ()=>{
+            this.requestAnimationFrame();
+        });
 
-        this.requestAnimationFrame();
+        super.addChild(child);
     }
 
     beforeRender(child){

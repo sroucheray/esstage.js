@@ -2,6 +2,7 @@ import Stage from "Stage";
 import Arc from "draw/Arc";
 import Circle from "draw/Circle";
 import Rect from "draw/Rect";
+import Sprite from "draw/Sprite";
 import Clip from "base/Clip";
 
 let stage = new Stage(document.querySelector('canvas'));
@@ -22,6 +23,25 @@ let rect2 = new Rect({
     height: 50
 });
 
+let sprite = new Sprite("assets/Donatello.gif", [
+    {x: 18, y: 0, width:55, height:101},
+    {x: 85, y: 0, width:55, height:101},
+    {x: 154, y: 0, width:55, height:101},
+    {x: 221, y: 0, width:55, height:101},
+    {x: 287, y: 0, width:55, height:101},
+    {x: 361, y: 0, width:53, height:101},
+    {x: 433, y: 0, width:55, height:101},
+    {x: 501, y: 0, width:55, height:101},
+
+    {x: 18, y: 100, width:55, height:101},
+    {x: 85, y: 100, width:55, height:101},
+    {x: 159, y: 100, width:55, height:101},
+    {x: 230, y: 100, width:55, height:101},
+    {x: 306, y: 101, width:55, height:101},
+    {x: 380, y: 101, width:53, height:101},
+    {x: 461, y: 101, width:66, height:101},
+]);
+
 let clip = new Clip();
 
 rect2.fillStyle = "red";
@@ -30,6 +50,7 @@ clip.addChild(rect2);
 clip.addChild(rect);
 
 stage.addChild(clip);
+stage.addChild(sprite);
 
 rect.center(25, 25);
 
