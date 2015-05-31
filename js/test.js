@@ -23,7 +23,7 @@ let rect2 = new Rect({
     height: 50
 });
 
-let sprite = new Sprite("assets/Donatello.gif", [
+/*let sprite = new Sprite("assets/Donatello.gif", [
     {x: 18, y: 0, width:55, height:101},
     {x: 85, y: 0, width:55, height:101},
     {x: 154, y: 0, width:55, height:101},
@@ -40,18 +40,84 @@ let sprite = new Sprite("assets/Donatello.gif", [
     {x: 306, y: 101, width:55, height:101},
     {x: 380, y: 101, width:53, height:101},
     {x: 461, y: 101, width:66, height:101},
+]);*/
+
+let sprite = new Sprite("assets/sonic.png", [
+    {x: 11, y: 8, width:23, height:36},
+    {x: 45, y: 8, width:24, height:36},
+    {x: 80, y: 8, width:26, height:36},
+    {x: 117, y: 8, width:24, height:36},
+    {x: 155, y: 8, width:23, height:36},
+    {x: 191, y: 8, width:23, height:36},
+    {x: 227, y: 8, width:23, height:36},
+    {x: 263, y: 8, width:23, height:36},
+    {x: 296, y: 8, width:26, height:36},
+    {x: 333, y: 8, width:24, height:36},
+    {x: 369, y: 8, width:23, height:36},
+    {x: 403, y: 8, width:23, height:36},
+    {x: 477, y: 8, width:25, height:36},
+    {x: 511, y: 8, width:26, height:36},
+    {x: 549, y: 8, width:24, height:36},
+    {x: 586, y: 8, width:22, height:36},
+    {x: 622, y: 8, width:23, height:36},
+    {x: 659, y: 8, width:22, height:36},
+    {x: 693, y: 8, width:25, height:36},
+    {x: 728, y: 8, width:28, height:36},
+    {x: 764, y: 8, width:28, height:36},
+    {x: 801, y: 8, width:29, height:36},
+    {x: 845, y: 8, width:29, height:36},
+    {x: 889, y: 8, width:29, height:36},
+    {x: 933, y: 8, width:30, height:36},
+    {x: 978, y: 8, width:29, height:36},
+]);
+
+let sprite2 = new Sprite("assets/sonic.png", [
+    {x: 11, y: 8, width:23, height:36},
+    {x: 45, y: 8, width:24, height:36},
+    {x: 80, y: 8, width:26, height:36},
+    {x: 117, y: 8, width:24, height:36},
+    {x: 155, y: 8, width:23, height:36},
+    {x: 191, y: 8, width:23, height:36},
+    {x: 227, y: 8, width:23, height:36},
+    {x: 263, y: 8, width:23, height:36},
+    {x: 296, y: 8, width:26, height:36},
+    {x: 333, y: 8, width:24, height:36},
+    {x: 369, y: 8, width:23, height:36},
+    {x: 403, y: 8, width:23, height:36},
+    {x: 477, y: 8, width:25, height:36},
+    {x: 511, y: 8, width:26, height:36},
+    {x: 549, y: 8, width:24, height:36},
+    {x: 586, y: 8, width:22, height:36},
+    {x: 622, y: 8, width:23, height:36},
+    {x: 659, y: 8, width:22, height:36},
+    {x: 693, y: 8, width:25, height:36},
+    {x: 728, y: 8, width:28, height:36},
+    {x: 764, y: 8, width:28, height:36},
+    {x: 801, y: 8, width:29, height:36},
+    {x: 845, y: 8, width:29, height:36},
+    {x: 889, y: 8, width:29, height:36},
+    {x: 933, y: 8, width:30, height:36},
+    {x: 978, y: 8, width:29, height:36},
 ]);
 
 let clip = new Clip();
 
-rect2.fillStyle = "red";
+rect2.fillStyle = "green";
 
 clip.addChild(rect2);
 clip.addChild(rect);
 
 stage.addChild(clip);
 stage.addChild(sprite);
+stage.addChild(sprite2);
 
+rect.debug(true);
+sprite.debug(true);
+sprite2.debug(true);
+
+sprite2.x = 100;
+sprite2.y = 100;
+sprite2.center(0, 36);
 rect.center(25, 25);
 
 var rotation = 0;

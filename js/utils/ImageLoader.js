@@ -20,8 +20,11 @@ class ImageLoader {
 
     imagesData(){
         return this.images.map((image)=>{
-            let context = document.createElement("canvas").getContext("2d");
-            context.drawImage(image, 0, 0 );
+            let canvas = document.createElement("canvas");
+            canvas.width = image.width;
+            canvas.height = image.height;
+            let context = canvas.getContext("2d");
+            context.drawImage(image, 0, 0);
             return context.getImageData(0, 0, image.width, image.height);
         });
     }

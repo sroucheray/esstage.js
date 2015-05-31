@@ -12,6 +12,10 @@ class Clip extends Draw {
         }
     }
 
+    debug(debug){
+        this._debug = debug;
+    }
+
     bubbleEvent(event, originalChild){
         return (data) =>{
             if(!!this.parent){
@@ -38,15 +42,23 @@ class Clip extends Draw {
         return this.children.indexOf(child) > -1;
     }
 
-    beforeRender(child){
+    beforeRender(child, stage){
         if(!!this.parent){
             this.parent.beforeRender(child);
         }
     }
 
-    afterRender(child){
+    afterRender(child, stage){
         if(!!this.parent){
             this.parent.afterRender(child);
+        }
+
+        if(this._debug){
+            let oldStrokeStyle = stage.ctx.strokeStyle;
+            stage.ctx.strokeStyle = "red"
+            stage.ctx.strokeRect(this.stageX, this.stageY, this.width, this.height);
+            stage.ctx.arc(this.stageX + this.centerX, this.stageY + this.centerY, 3, 0, Math.PI * 2, false);
+            stage.ctx.strokeStyle = oldStrokeStyle;
         }
     }
 
@@ -57,9 +69,9 @@ class Clip extends Draw {
         }
 
         for(let child of this){
-            this.beforeRender(child);
+            this.beforeRender(child, stage);
             child.draw(stage);
-            this.afterRender(child)
+            this.afterRender(child, stage)
         }
     }
 }

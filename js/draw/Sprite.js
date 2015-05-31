@@ -17,20 +17,22 @@ class Sprite extends MovieClip {
         this.framesParam.forEach((frameParam, frameNum)=>{
             this.addFrameScript(frameNum, (stage, frameNum) => {
                 this.currentFrameParam = frameParam;
+                this.width = frameParam.width;
+                this.height = frameParam.height;
             })
         });
     }
 
     draw(stage){
+        let params = this.currentFrameParam;
         super.draw(stage);
         if(!this.images){
             return;
         }
-        let params = this.currentFrameParam;
         stage.ctx.drawImage(
             this.images[0],
             params.x, params.y, params.width, params.height,
-            this.stageX, this.stageY, params.width, params.height);
+            this.stageX - this.centerX, this.stageY - this.centerY, params.width, params.height);
     }
 }
 

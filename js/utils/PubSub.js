@@ -10,10 +10,10 @@ class PubSub {
         });
     }
 
-    trigger(event) {
+    trigger(event, data) {
         for (var i = 0; i < this.handlers.length; i++) {
             if (this.handlers[i].event === event) {
-                this.handlers[i].handler.call();
+                this.handlers[i].handler.call(this, data);
             }
         }
     }
