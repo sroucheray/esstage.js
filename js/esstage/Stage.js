@@ -1,5 +1,5 @@
-import CanvasImage from "draw/CanvasImage";
-import Clip from "base/Clip";
+import CanvasImage from "esstage/draw/CanvasImage";
+import Clip from "esstage/base/Clip";
 
 class Stage extends Clip{
     constructor(canvas){

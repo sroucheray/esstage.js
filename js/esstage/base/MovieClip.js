@@ -1,5 +1,5 @@
-import Clip from "base/Clip";
-import requestAnimationFrameRate from "utils/FrameRate";
+import Clip from "esstage/base/Clip";
+import requestAnimationFrameRate from "esstage/utils/FrameRate";
 
 class MovieClip extends Clip {
     constructor(params, styles){

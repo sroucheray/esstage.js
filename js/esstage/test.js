@@ -1,9 +1,9 @@
-import Stage from "Stage";
-import Arc from "draw/Arc";
-import Circle from "draw/Circle";
-import Rect from "draw/Rect";
-import Sprite from "draw/Sprite";
-import Clip from "base/Clip";
+import Stage from "esstage/Stage";
+import Arc from "esstage/draw/Arc";
+import Circle from "esstage/draw/Circle";
+import Rect from "esstage/draw/Rect";
+import Sprite from "esstage/draw/Sprite";
+import Clip from "esstage/base/Clip";
 
 let stage = new Stage(document.querySelector('canvas'));
 let radius = 20;

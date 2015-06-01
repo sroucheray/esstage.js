@@ -1,5 +1,5 @@
-import MovieClip from "base/MovieClip";
-import ImageLoader from "utils/ImageLoader";
+import MovieClip from "esstage/base/MovieClip";
+import ImageLoader from "esstage/utils/ImageLoader";
 
 class Sprite extends MovieClip {
     constructor(url, framesParam){

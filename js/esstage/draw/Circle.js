@@ -1,4 +1,4 @@
-import Arc from "draw/Arc";
+import Arc from "esstage/draw/Arc";
 import _ from "underscore/object";
 
 class Circle extends Arc {

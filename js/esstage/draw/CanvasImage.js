@@ -1,4 +1,4 @@
-import Draw from "base/Draw";
+import Draw from "esstage/base/Draw";
 
 class CanvasImage extends Draw {
     constructor(imageData, x = 0, y = 0, width = null, height = null){

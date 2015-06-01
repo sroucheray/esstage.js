@@ -1,4 +1,4 @@
-import Draw from "base/Clip";
+import Draw from "esstage/base/Clip";
 
 class DebugClip extends Clip {
     constructor(params, styles){

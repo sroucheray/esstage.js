@@ -1,4 +1,4 @@
-import Clip from "base/Clip";
+import Clip from "esstage/base/Clip";
 
 class ImageClip extends Clip {
     constructor(image, width = undefined, height = undefined, x = 0, y = 0){

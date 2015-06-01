@@ -1,4 +1,4 @@
-import Draw from "base/Draw";
+import Draw from "esstage/base/Draw";
 
 class Rect extends Draw {
     constructor(params = {

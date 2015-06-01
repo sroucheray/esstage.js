@@ -1,4 +1,4 @@
-import PubSub from "utils/PubSub";
+import PubSub from "esstage/utils/PubSub";
 
 class Draw extends PubSub {
     constructor(params = {
