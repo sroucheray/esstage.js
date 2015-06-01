@@ -14,5 +14,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "jspm":{
+    "format":"es6",
+    "directories": {
+      "lib": "js/"
+    }
+  }
 }
