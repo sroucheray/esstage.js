@@ -1,13 +1,17 @@
 import PubSub from "utils/PubSub";
 
 class SpriteAnalyser extends PubSub{
-    constructor(imageData, backgroundPixel = {r: 0, g: 0, b: 0, a: 0}){
+    constructor(imageData, params = {
+            backgroundPixel: {r: 0, g: 0, b: 0, a: 0},
+            borders: {top: 3, right: 3, bottom: 3, left:3}
+        }){
         super();
         this.imageData = imageData;
         this.width = imageData.width;
         this.height = imageData.height;
-        this.backgroundPixel = backgroundPixel;
+        this.backgroundPixel = params.backgroundPixel;
         this.results = [];
+        this.borders = params.borders;
     }
 
     isBackground(x, y){
@@ -48,7 +52,7 @@ class SpriteAnalyser extends PubSub{
                     //console.log("isbg", x, y)
                 }else{
                     let result = this.buildSprite(x, y);
-                    console.log(x, y, result)
+                    console.log(result)
                     this.trigger("result", result);
                     this.results.push(result);
                     //return;
@@ -93,7 +97,7 @@ class SpriteAnalyser extends PubSub{
         return true;
     }
 
-    buildSprite(startX, startY, startWidth = 1, startHeight = 1){
+    buildSprite(startX, startY, startWidth = 1, startHeight = 1, borders = {top: 1, right: 1, bottom: 1, left:1}){
         //console.log(startX, startY, startWidth, startHeight)
         let topRowIsBackground = this.isRowBackground(startX, startX + startWidth, startY);
         let bottomRowIsBackground = this.isRowBackground(startX, startX + startWidth, startY + startHeight);
@@ -130,10 +134,39 @@ class SpriteAnalyser extends PubSub{
 
         //console.log(hasBackgroundBorder, isFullArea)
         if(hasBackgroundBorder || isFullArea){
-            return {x: startX, y: startY, width: startWidth, height: startHeight};
+            if(
+                borders.top === this.borders.top &&
+                borders.right === this.borders.right &&
+                borders.bottom === this.borders.bottom &&
+                borders.left === this.borders.left
+            ){
+                return {x: startX, y: startY, width: startWidth, height: startHeight};
+            }
+
+            if(this.borders.top > borders.top){
+                borders.top++;
+                startY = startY - 1;
+                startHeight = startHeight + 1;
+            }
+
+            if(this.borders.left > borders.left){
+                borders.left++;
+                startX = startX - 1;
+                startWidth = startWidth + 1;
+            }
+
+            if(this.borders.bottom > borders.bottom){
+                borders.bottom++;
+                startHeight = startHeight + 1;
+            }
+
+            if(this.borders.right > borders.right){
+                borders.right++;
+                startWidth = startWidth + 1;
+            }
         }
 
-        return this.buildSprite(startX, startY, startWidth, startHeight)
+        return this.buildSprite(startX, startY, startWidth, startHeight, borders);
     }
 }
 

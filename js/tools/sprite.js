@@ -22,9 +22,10 @@ loader.load("/assets/sonic.png").then(()=>{
 
     var spriteWorker = new Worker("../../js/tools/spriteWorker.js");
     spriteWorker.postMessage({imageData: imageData});
+    var datas = [];
     spriteWorker.onmessage = function(e){
         var data = e.data;
-
+        datas.push(data);
         let div = document.createElement("div");
 
         div.setAttribute("style", `
@@ -42,6 +43,7 @@ loader.load("/assets/sonic.png").then(()=>{
             rect.fillStyle = "red";
         }
         stage.addChild(rect);*/
+        //console.log(datas)
     }
 });
 
