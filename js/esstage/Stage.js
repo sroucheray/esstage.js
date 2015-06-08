@@ -39,6 +39,12 @@ class Stage extends Clip{
         });
     }
 
+    getImageData(){
+        return this.requestAnimationFrame().then(() => {
+            return this.ctx.getImageData(0, 0, this.width, this.height);
+        });
+    }
+
     requestAnimationFrame(){
         window.cancelAnimationFrame(this._paintRequest);
         return new Promise((resolve) => {
