@@ -13,8 +13,16 @@ class Stage extends Clip{
         return this.canvas.width;
     }
 
-    get height(){
+    set width(value) {
+        this.canvas.width = value;
+    }
+
+    get height() {
         return this.canvas.height;
+    }
+
+    set height(value) {
+        this.canvas.height = value;
     }
 
     get stageX(){
