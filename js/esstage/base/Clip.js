@@ -69,9 +69,11 @@ class Clip extends Draw {
         }
 
         for(let child of this){
-            this.beforeRender(child, stage);
-            child.draw(stage);
-            this.afterRender(child, stage)
+            if(child.visible){
+                this.beforeRender(child, stage);
+                child.draw(stage);
+                this.afterRender(child, stage)
+            }
         }
     }
 }

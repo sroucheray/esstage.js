@@ -7,6 +7,9 @@ class Stage extends Clip{
 
         this.children = [];
         this.canvas = canvas;
+        this.on("update", ()=>{
+            this.requestAnimationFrame();
+        });
     }
 
     get width(){
@@ -14,7 +17,10 @@ class Stage extends Clip{
     }
 
     set width(value) {
-        this.canvas.width = value;
+        super.width = value;
+        if(this.canvas){
+            this.canvas.width = value;
+        }
     }
 
     get height() {
@@ -22,7 +28,10 @@ class Stage extends Clip{
     }
 
     set height(value) {
-        this.canvas.height = value;
+        super.height = value;
+        if(this.canvas){
+            this.canvas.height = value;
+        }
     }
 
     get stageX(){
@@ -49,7 +58,7 @@ class Stage extends Clip{
         window.cancelAnimationFrame(this._paintRequest);
         return new Promise((resolve) => {
             this._paintRequest = window.requestAnimationFrame(() => {
-                this.paint();
+                this.draw();
                 resolve();
             });
         });
@@ -84,16 +93,10 @@ class Stage extends Clip{
         this.ctx.restore();
     }
 
-    paint(){
+    draw(stage){
         this.ctx.clearRect(0, 0, this.width, this.height);
-        if(!this.numChildren){
-            return;
-        }
-
-        for(let child of this){
-            this.beforeRender(child);
-            child.draw(this);
-            this.afterRender(child)
+        if(this.visible){
+            super.draw(this);
         }
     }
 }

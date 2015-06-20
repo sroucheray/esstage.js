@@ -2,7 +2,7 @@
   "name": "esstage",
   "version": "1.0.0",
   "description": "",
-  "main": "js/esstage",
+  "main": false,
   "dependencies": {
     "babel": "^5.4.3",
     "es6-module-loader": "^0.16.6",
@@ -15,12 +15,23 @@
   },
   "author": "@sroucheray",
   "license": "ISC",
-  "jspm":{
-    "main": "js/esstage",
+  "jspm": {
     "registry": "github",
-    "format":"es6",
+    "format": "es6",
     "directories": {
-      "lib": "js/"
+      "lib": "js/esstage"
+    },
+    "dependencies": {
+      "event-class": "npm:event-class@^0.1.1"
+    },
+    "devDependencies": {
+      "traceur": "github:jmcriffey/bower-traceur@0.0.89",
+      "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.89"
+    },
+    "overrides": {
+      "npm:event-class@0.1.0": {
+        "format": "es6"
+      }
     }
   }
 }

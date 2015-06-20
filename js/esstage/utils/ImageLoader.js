@@ -1,20 +1,48 @@
 class ImageLoader {
     load(param){
-        if(typeof param === "string"){
+        //TODO: handle FileList
+        if(!Array.isArray(param)){
             param = [param];
         }
-        var promises = param.map((url)=>{
-            return new Promise(function(resolve, reject){
-                let image = new Image()
-                image.onload = ()=>{
-                    resolve(image);
-                };
-                image.src= url;
-            });
-        })
+
+        let promises = param.map((url)=>{
+            if(url instanceof File){
+                return this.getURLFromFile(url).then(this.getImageFromURL);
+            }
+
+            return this.getImageFromURL(url);
+        });
+
         return Promise.all(promises).then((images)=>{
             this.images = images;
             return this;
+        });
+    }
+
+    getURLFromFile(file){
+        return new Promise(function(resolve, reject){
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                resolve(e.target.result)
+            }
+            reader.onerror = (error) => {
+                reject(error);
+            }
+
+            reader.readAsDataURL(file);
+        });
+    }
+
+    getImageFromURL(url){
+        return new Promise(function(resolve, reject){
+            let img = new Image();
+            img.onload = () => {
+                resolve(img)
+            }
+            img.onerror = (message) => {
+                reject(message)
+            }
+            img.src = url;
         });
     }
 

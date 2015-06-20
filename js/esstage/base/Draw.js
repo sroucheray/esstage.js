@@ -1,9 +1,13 @@
-import PubSub from "esstage/utils/PubSub";
+//import PubSub from "esstage/utils/PubSub";
+import EventClass from "event-class";
 
-class Draw extends PubSub {
+class Draw extends EventClass {
     constructor(params = {
         x: 0,
-        y: 0
+        y: 0,
+        width: 300,
+        height: 150,
+        visible: true
     }, styles = {
         strokeStyle: "black",
         fillStyle: "black",
@@ -13,8 +17,14 @@ class Draw extends PubSub {
         shadowColor: "transparent black"
     }) {
         super();
-        this.assign(params);
-        this.assign(styles);
+
+        for(let param in params){
+            this[param] = params[param]
+        }
+
+        for(let style in styles){
+            this[style] = styles[style]
+        }
 
         this.resetTransforms();
 
@@ -22,24 +32,103 @@ class Draw extends PubSub {
         this.parent = null;
     }
 
-    /* Dynamically assign properties to the class that trigger update when they are set */
-    assign(properties) {
-        for (let property in properties){
-            Object.defineProperty(this, property, {
-                get: function() {
-                    return this[`_${property}`];
-                },
-                set: function(value) {
-                    this[`_${property}`] = value;
-                    this.trigger("update", {
-                        property: property,
-                        value: value
-                    });
-                }
-            });
+    get visible() {
+        return this._visible;
+    }
 
-            this[property] = properties[property];
-        }
+    set visible(value) {
+        this._visible = value;
+        this.trigger("update:visible", value);
+    }
+
+    get x() {
+        return this._x;
+    }
+
+    set x(value) {
+        this._x = value;
+        this.trigger("update:x", value);
+    }
+
+    get y() {
+        return this._y;
+    }
+
+    set y(value) {
+        this._y = value;
+        this.trigger("update:y", value);
+    }
+
+    get width() {
+        return this._width;
+    }
+
+    set width(value) {
+        this._width = value;
+        this.trigger("update:width", value);
+    }
+
+    get height() {
+        return this._height;
+    }
+
+    set height(value) {
+        this._height = value;
+        this.trigger("update:height", value);
+    }
+
+    get strokeStyle() {
+        return this._strokeStyle;
+    }
+
+    set strokeStyle(value) {
+        this._strokeStyle = value;
+        this.trigger("update:strokeStyle", value);
+    }
+
+    get fillStyle() {
+        return this._fillStyle;
+    }
+
+    set fillStyle(value) {
+        this._fillStyle = value;
+        this.trigger("update:fillStyle", value);
+    }
+
+    get shadowOffsetX() {
+        return this._shadowOffsetX;
+    }
+
+    set shadowOffsetX(value) {
+        this._shadowOffsetX = value;
+        this.trigger("update:shadowOffsetX", value);
+    }
+
+    get shadowOffsetY() {
+        return this._shadowOffsetY;
+    }
+
+    set shadowOffsetY(value) {
+        this._shadowOffsetY = value;
+        this.trigger("update:shadowOffsetY", value);
+    }
+
+    get shadowBlur() {
+        return this._shadowBlur;
+    }
+
+    set shadowBlur(value) {
+        this._shadowBlur = value;
+        this.trigger("update:shadowBlur", value);
+    }
+
+    get shadowColor() {
+        return this._shadowColor;
+    }
+
+    set shadowColor(value) {
+        this._shadowColor = value;
+        this.trigger("update:shadowColor", value);
     }
 
     get parent() {
